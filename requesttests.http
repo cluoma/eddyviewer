@@ -1,0 +1,28 @@
+POST http://localhost:9090/api/picture/new
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="createddate"
+
+1608494989
+--WebAppBoundary
+Content-Disposition: form-data; name="picture"; filename="test.jpg"
+Content-Type: image/jpg
+
+< ./test.jpg
+--WebAppBoundary--
+
+
+###
+POST http://192.168.0.122:9090/api/picture/new
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="createddate"
+
+1608496030
+--WebAppBoundary
+Content-Disposition: form-data; name="picture"; filename="CMakeLists.tt"
+
+< ./test.jpg
+--WebAppBoundary--
