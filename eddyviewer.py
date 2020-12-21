@@ -39,7 +39,7 @@ def main():
 			print ("General error",err)
 	
 		print(time.time() - start)
-		sleep(5 - (time.time() - start))
+		sleep(max( 0, 5 - (time.time() - start) ))
 	
 	return 0
 
