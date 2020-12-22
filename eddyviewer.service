@@ -6,7 +6,7 @@ After=network.target
 Type=simple
 User=linaro
 WorkingDirectory=/home/linaro/Documents/build/eddyviewer
-ExecStart=/home/linaro/Documents/eddyviewer/eddyviewer --docroot . --http-address 0.0.0.0 --http-port 9090 --config=../wt_config.xml
+ExecStart=/home/linaro/Documents/eddyviewer/build/eddyviewer --docroot . --http-address 0.0.0.0 --http-port 9090 --config=../wt_config.xml
 Restart=always
 
 [Install]
