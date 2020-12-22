@@ -11,7 +11,7 @@ project(eddyviewer)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
-add_executable(eddyviewer src/main.cpp src/CameraShot.cpp src/CameraShot.h src/ViewerApplication.cpp src/ViewerApplication.h)
+add_executable(eddyviewer src/main.cpp src/CameraShot.cpp src/CameraShot.h src/ViewerApplication.cpp src/ViewerApplication.h src/ImageFlip.cpp src/ImageFlip.h)
 
 add_subdirectory(wt-4.4.0)
 include_directories(wt-4.4.0/src)
