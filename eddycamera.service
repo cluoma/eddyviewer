@@ -1,0 +1,13 @@
+[Unit]
+Description=EddyViewer HTTP Service Daemon
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/Documents/eddyviewer
+ExecStart=python3 eddyviewer.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

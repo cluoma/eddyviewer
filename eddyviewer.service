@@ -1,0 +1,13 @@
+[Unit]
+Description=EddyViewer HTTP Service Daemon
+After=network.target
+
+[Service]
+Type=simple
+User=linaro
+WorkingDirectory=/home/linaro/Documents/eddyviewer
+ExecStart=/home/linaro/Documents/eddyviewer/eddyviewer --docroot . --http-address 0.0.0.0 --http-port 9090 --config=../wt_config.xml
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
