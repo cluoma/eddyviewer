@@ -6,7 +6,7 @@ After=network.target
 Type=simple
 User=pi
 WorkingDirectory=/home/pi/Documents/eddyviewer
-ExecStart=python3 eddyviewer.py
+ExecStart=/usr/bin/python3 eddyviewer.py
 Restart=always
 
 [Install]
