@@ -1,5 +1,5 @@
 [Unit]
-Description=EddyViewer HTTP Service Daemon
+Description=EddyViewer Camera Service Daemon
 After=network.target
 
 [Service]
