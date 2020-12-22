@@ -17,6 +17,7 @@
 #include <Wt/WTimer.h>
 
 #include "CameraShot.h"
+#include "ImageFlip.h"
 
 class ViewerApplication : public Wt::WApplication
 {
@@ -24,11 +25,14 @@ public:
     ViewerApplication(const Wt::WEnvironment& env, Wt::Dbo::SqlConnectionPool& dbpool);
 
 private:
-    void render();
+    void update();
     void getMostRecentImage();
 
     Wt::Dbo::Session session_;
     Wt::Dbo::ptr<CameraShot> c_;
+
+    Wt::WText * dateLabel_;
+    ImageFlip * image_;
 };
 
 
