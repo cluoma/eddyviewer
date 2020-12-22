@@ -24,7 +24,7 @@ static std::unique_ptr<Wt::Dbo::SqlConnectionPool> createConnectionPool(const st
     auto connection = std::make_unique<Wt::Dbo::backend::Sqlite3>(sqliteDb);
     connection->setProperty("show-queries", "true");
     connection->setDateTimeStorage(Wt::Dbo::SqlDateTimeType::DateTime, Wt::Dbo::backend::DateTimeStorage::PseudoISO8601AsText);
-    return std::make_unique<Wt::Dbo::FixedSqlConnectionPool>(std::move(connection), 10);
+    return std::make_unique<Wt::Dbo::FixedSqlConnectionPool>(std::move(connection), 20);
 }
 
 class RestGetHello : public Wt::WResource
@@ -49,21 +49,11 @@ protected:
 
         // First-time run: create tables and directories
         try {
-            //session.dropTables();
-        }
-        catch (Wt::Dbo::Exception &e) {
-            std::cerr << e.what();
-//            response.setStatus(500);
-//            return;
-        }
-
-        try {
+            //session.dropTables(); /* uncomment during testing if desired */
             session.createTables();
         }
         catch (Wt::Dbo::Exception &e) {
             std::cerr << e.what();
-//            response.setStatus(500);
-//            return;
         }
 
 
@@ -79,7 +69,6 @@ protected:
         }
 
         // Get current time
-//        auto serverdate = Wt::WDateTime( std::chrono::system_clock::now() );
         auto serverdate = Wt::WDateTime::currentDateTime();
         int64_t serverdateint = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 
@@ -106,12 +95,6 @@ protected:
         int64_t createddateint = strtoll((*createddate_param).c_str(), nullptr, 10);
         Wt::WDateTime createddate;
         createddate.setTime_t(createddateint);
-
-//        std::cout << *request.getParameter("createddate") << std::endl;
-//        response.out() << file->spoolFileName() << "\n"
-//            << file->clientFileName() << "\n"
-//            << *request.getParameter("createddate") << "\n"
-//            << "Hello Rest!\n";
 
         dbo::Transaction transaction{session};
         auto c = std::make_unique<CameraShot>();
@@ -140,8 +123,6 @@ int main(int argc, char **argv)
         server.addEntryPoint(Wt::EntryPointType::Application, [&appdbpool](const Wt::WEnvironment &env) {
             return Wt::cpp14::make_unique<ViewerApplication>(env, *appdbpool);
         });
-//        server.addEntryPoint(Wt::EntryPointType::Application,
-//                             std::bind(&createApplication, std::placeholders::_1, blogDb.get()), "/");
 
         server.run();
     }
