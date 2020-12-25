@@ -58,6 +58,6 @@ void ViewerApplication::update()
 {
     getMostRecentImage();
 //    dateLabel_->setText(c_->createddate.toString());
-    image_->push(c_->filename, c_->createddate.toLocalTime().toString().narrow());
+    image_->push(c_->filename, c_->createddate.toString().narrow());
     dateLabel_->setText(image_->getVisibleTimestamp());
 }

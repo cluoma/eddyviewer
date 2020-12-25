@@ -15,8 +15,6 @@
 #include <Wt/WImage.h>
 #include <Wt/WLink.h>
 #include <Wt/WTimer.h>
-#include <Wt/WDateTime.h>
-#include <Wt/WLocalDateTime.h>
 
 #include "CameraShot.h"
 #include "ImageFlip.h"
