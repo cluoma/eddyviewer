@@ -27,12 +27,12 @@ static std::unique_ptr<Wt::Dbo::SqlConnectionPool> createConnectionPool(const st
     return std::make_unique<Wt::Dbo::FixedSqlConnectionPool>(std::move(connection), 20);
 }
 
-class RestGetHello : public Wt::WResource
+class RestPostNewPicture : public Wt::WResource
 {
 public:
-    RestGetHello(Wt::Dbo::SqlConnectionPool& dbpool)
+    RestPostNewPicture(Wt::Dbo::SqlConnectionPool& dbpool)
         : connectionPool_(dbpool) {};
-    virtual ~RestGetHello()
+    virtual ~RestPostNewPicture()
     {
     }
 
@@ -117,8 +117,8 @@ int main(int argc, char **argv)
         std::unique_ptr<Wt::Dbo::SqlConnectionPool> appdbpool
                 = createConnectionPool(server.appRoot() + "eddyviewer.db");
 
-        RestGetHello getHello(*appdbpool);
-        server.addResource(&getHello, "/api/picture/new");
+        RestPostNewPicture postNewPicture(*appdbpool);
+        server.addResource(&postNewPicture, "/api/picture/new");
 
         server.addEntryPoint(Wt::EntryPointType::Application, [&appdbpool](const Wt::WEnvironment &env) {
             return Wt::cpp14::make_unique<ViewerApplication>(env, *appdbpool);
